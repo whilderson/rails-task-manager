@@ -1,17 +1,26 @@
 <h1><%= @task.title %> </h1>
-<ul>
-    <li>description: <%= @task.details %> </li>
-    <li>status: <%= @task.completed ? "compeleted" : "pending" %></li>
-</ul>
+<div class="alert alert-secondary">
+      <p><%= @task.details %> </p>
+  </ul>
+</div>
+
 <p>
-<%= link_to "Edit this task", edit_task_path %>
+  <% if @task.completed %>
+    <i class="far fa-check-square"></i> This task is completed
+  <% else %>
+    <i class="far fa-square"></i> This task is not yet completed
+  <% end %>
 </p>
+
 <p>
+<%= link_to "Edit this task", edit_task_path, :class => "btn btn-primary" %>
 <%= link_to "Delete this task",
             task_path(@task),
             method: :delete,
-            data: { confirm: "Are you sure to delete this task?" } %>
+            data: { confirm: "Are you sure to delete this task?" },
+            :class => "btn btn-primary" %>
 </p>
+<hr>
 <p>
 <%= link_to "Back to all tasks", tasks_path %>
 </p>
